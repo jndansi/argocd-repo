@@ -28,12 +28,10 @@ metadata:
 spec:
   selector:
     app: app
-  type: NodePort
+  type: ClusterIP
   ports:
   - name: app
     protocol: TCP
     port: 80
     targetPort: 80
-    nodePort: 30021
-    # If you set the `spec.type` field to `NodePort` and you want a specific port number,
-    # you can specify a value in the `spec.ports[*].nodePort` field.
+    
