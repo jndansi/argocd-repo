@@ -17,7 +17,7 @@ spec:
 
     namespace: triple
 
-    server: https://34.73.28.80
+    server: https://kubernetes.default.svc
 
   project: default
 
