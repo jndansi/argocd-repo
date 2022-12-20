@@ -15,7 +15,7 @@ spec:
         app: gym
     spec:
       containers:
-      - name: viking
+      - name: gym
         image: docker.io/jndansi/gym:latest
         imagePullPolicy: Always
 
