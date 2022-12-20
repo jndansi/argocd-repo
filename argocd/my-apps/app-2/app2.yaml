@@ -15,7 +15,7 @@ spec:
         app: gym
     spec:
       containers:
-      - name: viking
+      - name: gym
         image: docker.io/jndansi/gym:latest
         imagePullPolicy: Always
 
@@ -28,12 +28,12 @@ metadata:
 spec:
   selector:
     app: gym
-  type: NodePort
+  type: ClusterIP
   ports:
   - name: gym
     protocol: TCP
     port: 80
     targetPort: 80
-    nodePort: 30021
-    # If you set the `spec.type` field to `NodePort` and you want a specific port number,
-    # you can specify a value in the `spec.ports[*].nodePort` field.
+    # nodePort: 30021
+    # # If you set the `spec.type` field to `NodePort` and you want a specific port number,
+    # # you can specify a value in the `spec.ports[*].nodePort` field.
