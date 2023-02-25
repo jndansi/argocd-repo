@@ -9,7 +9,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: "34.133.109.124.nip.io"
+  - host: "jasonndansi.link"
     http:
       paths:
       - pathType: Prefix
