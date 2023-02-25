@@ -8,7 +8,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: "34.172.79.141.nip.io"
+  - host: "34.133.109.124.nip.io"
     http:
       paths:
       - pathType: Prefix
