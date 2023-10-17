@@ -1,15 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name:  design-app
-  namespace: production
+  name:  test-app
+  namespace: app
   labels:
-    app:  design-app
+    app:  test-app
 spec:
   selector:
     matchLabels:
-      app: design-app
-  replicas: 1
+      app: test-app
+  replicas: 2
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -18,26 +18,26 @@ spec:
   template:
     metadata:
       labels:
-        app:  design-app
+        app:  test-app
     spec:
       # initContainers:
         # Init containers are exactly like regular containers, except:
           # - Init containers always run to completion.
           # - Each init container must complete successfully before the next one starts.
       containers:
-      - name:  design-app
-        image:  us-central1-docker.pkg.dev/starlit-rain-378823/test/design-image
+      - name:  test-app
+        image:  docker.io/jndansi/fruit:latest
         resources:
           requests:
             cpu: 100m
             memory: 100Mi
           limits:
-            cpu: 500m
-            memory: 500Mi
+            cpu: 100m
+            memory: 100Mi
         ports:
         - containerPort:  80
-          name:  design-app
-      #   volumeMounts:
+          name:  test-app
+        # volumeMounts:
       #   - name: localtime
       #     mountPath: /etc/localtime
       # volumes:
@@ -51,18 +51,18 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: design-app
-  namespace: production
+  name: test-app
+  namespace: app
 spec:
   selector:
-    app: design-app
+    app: test-app
   type: NodePort
   sessionAffinity: None
   sessionAffinityConfig:
     clientIP:
       timeoutSeconds: 10800
   ports:
-  - name: design-app
+  - name: test-app
     protocol: TCP
     port: 80
     targetPort: 80

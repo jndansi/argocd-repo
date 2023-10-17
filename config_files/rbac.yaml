@@ -1,0 +1,33 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: admin
+  namespace: app
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  resourceNames: [""]
+  verbs: ["get","watch","list"]
+
+# kubectl create role admin --verb=get --verb=watch --verb=list --resource=pods --namespace=app
+# for every rule besides 'resourceNames', a wildcard, '*', means that you want all objects
+
+--- 
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: pod-create-rolebinding
+  namespace: app
+subjects:
+# Can specify more than one subject
+- kind: Group
+  name: admin # case sensitive
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  # Specifies the binding to the Role / ClusterRole
+  kind: Role
+  name: pod-create
+  apiGroup: rbac.authorization.k8s.io
+
+# kubectl create rolebinding pod-create-rolebinding --namespace=app --group=admin --role=pod-create
